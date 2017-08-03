@@ -6,18 +6,30 @@ var plantilla="<h6>__clima__</h6>"+"<p>Wind:__wind__</p>"+
 var mostrarDetalles = function (){
 	console.log("hola")
 	// url = $(this).data("url");
-	var $contenedor = $("#listaDetalle");
-	var temp = document.createElement("p");  // Create with DOM
-    
+	var $contenedor = $("#temperatura");
+	var temp = document.createElement("h3");  // Create with DOM
+    var viento = document.createElement("p");
+    var divHumedad = document.createElement("p");
+    var divUv = document.createElement("p");
+    var divPresure =  document.createElement("p");
+
 	$.getJSON(url, function(data){
-		var $temperatura = data.forecast.forecastday[2];
-		console.log($temperatura);
-		temp.innerHTML = $temperatura;
-		var $wind = $("<p>"+data.forecastday.day.maxwind_mph+"</p>");
-		var $humedad = $("<p>"+data.forecastday.day.avghumidity+"</p>");
-		var $uv = $("<p>"+data.forecastday.day.avgvis_km+"</p>")
-		var $presure = $("<p>"+data.forecastday.day.totalprecip_mm+"</p>");
+		var $arregloClima = data.forecast.forecastday[0];
+		var $temperatura = $arregloClima.day.maxtemp_c;
+		var $vientos= $arregloClima.day.maxwind_mph;
+		var $humedad = $arregloClima.day.avghumidity;
+		var $uv = $arregloClima.day.avgvis_km;
+		var $presure = $arregloClima.day.totalprecip_mm;
+		temp.innerHTML = $temperatura+"°";
+		viento.innerHTML ="Wind: "+$vientos+"m/s";
+		divHumedad.innerHTML ="Humidity: "+$humedad+"%";
+		divUv.innerHTML ="Uv Index: "+$uv;
+		divPresure.innerHTML = "Pressure: "+$presure;
 		$contenedor.append(temp);
+		$contenedor.append(viento);
+		$contenedor.append(divHumedad);
+		$contenedor.append(divUv);
+		$contenedor.append(divPresure);
 
 	})
 	
@@ -28,7 +40,8 @@ var mostrarDetalles = function (){
 
 }
 var cargaPagina = function (){
-		$(document).on("click", "#bntEnviar" , mostrarDetalles)
+		mostrarDetalles();
+		// $(document).on("click", "#bntEnviar" , mostrarDetalles)
 
 }
  $(document).ready(cargaPagina);
