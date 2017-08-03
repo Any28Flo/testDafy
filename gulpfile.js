@@ -64,6 +64,11 @@ gulp.task("js-watch",["js"],(done)=>{
   done();
 });
 
+gulp.task("html-watch",["html"],(done)=>{
+  browserSync.reload();
+  done();
+});
+
 gulp.task("default", ()=>{
   browserSync.init({
     server: {
