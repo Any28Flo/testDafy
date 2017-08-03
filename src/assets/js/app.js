@@ -4,8 +4,7 @@ var plantilla="<h6>__clima__</h6>"+"<p>Wind:__wind__</p>"+
 		"<p>Humidity: __humidity__</p>"+"<p>UV Index:__uv__</p>"+"<p>Pressure:__pressure__</p>";
 
 var mostrarDetalles = function (){
-	console.log("hola")
-	// url = $(this).data("url");
+
 	var $contenedor = $("#temperatura");
 	var temp = document.createElement("h3");  // Create with DOM
     var viento = document.createElement("p");
