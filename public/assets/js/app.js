@@ -1,11 +1,34 @@
 var url= "http://api.apixu.com/v1/forecast.json?key=b9a104b67a13490fae6233332170208&q=Argentina";
 
-var plantilla="<h6>__clima__</h6>"+"<p>Wind:__wind__</p>"+
-		"<p>Humidity: __humidity__</p>"+"<p>UV Index:__uv__</p>"+"<p>Pressure:__pressure__</p>";
+var detAallesSemana = function (){
+	 var $contenedorSemana = (".infoSemana")
+	 var contenedorInfo = document.createElement("div");
+	 var fecha = document.createElement("span");
+	 var tempMin = document.createElement("span");
+	 var tempMax = document.createElement("span");
+	var urlDias = "http://api.apixu.com/v1/forecast.json?key=b9a104b67a13490fae6233332170208&q=Argentina&days=7";
+	$.getJSON (urlDias,function(data){
+			for (var i = 0 ; i< 7 ; i++){
+
+			$elemento = data.forecast.forecastday[i];
+			var $infoFecha = $elemento.date;
+			var $maxTemp = $elemento.day.maxtemp_c;
+			var $minTemp = $elemento.day.mintemp_c;
+			// temp.innerHTML = $temperatura+"°";
+			fecha.innerHTML=$infoFecha;
+			tempMax.innerHTML = $maxTemp;
+			tempMin.innerHTML = $minTemp;
+
+			contenedorInfo.append= $infoFecha;
+			contenedorInfo.append = $maxTemp;
+			contenedorInfo.append = $minTemp;
+			$contenedorSemana.append =contenedorInfo;
+			}
+	})
+}
 
 var mostrarDetalles = function (){
-	console.log("hola")
-	// url = $(this).data("url");
+
 	var $contenedor = $("#temperatura");
 	var temp = document.createElement("h3");  // Create with DOM
     var viento = document.createElement("p");
@@ -41,6 +64,7 @@ var mostrarDetalles = function (){
 }
 var cargaPagina = function (){
 		mostrarDetalles();
+		detAallesSemana();
 		// $(document).on("click", "#bntEnviar" , mostrarDetalles)
 
 }
