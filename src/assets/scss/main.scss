@@ -1,0 +1,26 @@
+
+$alto: 95vh;
+$altoTreinta: 5vh;
+$valorOpacidad: 0.6;
+$colorNegro: #0a0909;
+$colorBlanco: #ffffff;
+
+.infoContainer{
+  background-image :url("../iconos/fondo.jpg");
+  background-position: center top;
+  background-size: 100% 100vh;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.info{
+	color: $colorBlanco;
+	opacity: $valorOpacidad;
+	
+	background-color: $colorNegro;
+	height: $alto;
+}
+.boton{
+	opacity: $valorOpacidad;
+	background-color: $colorBlanco;
+	height: $altoTreinta;
+}
